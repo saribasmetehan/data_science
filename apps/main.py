@@ -155,3 +155,5 @@ deger = np.array([15,47])
 sonuc = np.linalg.solve(denklem,deger)
 
 print(sonuc)
+
+
