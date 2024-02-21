@@ -160,7 +160,7 @@ print(df.describe())
 print(df.describe().T)
 
 
-"""
+
 #gruplandırma
 
 df1 = pd.DataFrame({"gruplar": ["a","b","c","d","a","b","c"],
@@ -168,24 +168,53 @@ df1 = pd.DataFrame({"gruplar": ["a","b","c","d","a","b","c"],
 
 df1.groupby("gruplar")
 
+print(df1)
+
+print(df1.groupby("gruplar").mean())
 
 
 
+#aggregate, filter,apply
+
+df= pd.DataFrame({"sınıflar": ["a","b","c","a","b"],
+                   "degerler": [10,35,67,33,77],
+                    "notlar":[25,37,33,78,99]})
+
+print(df)
+
+print(df.groupby("sınıflar").describe())
+
+print(df.groupby("sınıflar").aggregate([min,np.median,max]))
+
+print(df.groupby("sınıflar").aggregate({"degerler":min,"notlar":max}))
+
+print(df.apply(np.sum))
+
+print(df.groupby("sınıflar").apply(np.sum))
 
 
+#pivot_table
+titanic = sns.load_dataset("titanic")
+
+print(titanic)
+print(titanic.head())
+
+print(titanic.groupby("sex")["survived"].mean())
+
+print(titanic.groupby(["sex","class"])[["survived"]].aggregate("mean"))
+
+print(titanic.pivot_table("survived",index="sex",columns="class"))
+
+"""
+#Dosya okuma
+
+print(pd.read_csv("reading_data/ornekcsv.csv",sep=";"))
 
 
+print(pd.read_csv("reading_data/duz_metin.txt"))
 
 
-
-
-
-
-
-
-
-
-
+print(pd.read_excel("reading_data/ornekx.xlsx"))
 
 
 
